@@ -1,0 +1,67 @@
+{
+  "manifest_version": 2,
+  "name": "i快招",
+  "version": "1.0",
+  "description": "一键导入简历至i快招招聘系统",
+  "icons": {
+    "16": "assets/img/16.png",
+    "32": "assets/img/32.png",
+    "48": "assets/img/48.png",
+    "128": "assets/img/128.png"
+  },
+  "background": {
+    "scripts": ["js/background-script/background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "assets/img/16.png",
+      "32": "assets/img/32.png",
+      "48": "assets/img/48.png",
+      "128": "assets/img/128.png"
+    },
+    "default_title": "i快招",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "cookies",
+    "*://*.ihr360.com/*",
+    "tabs",
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "homepage_url": "https://www.ihr360.com",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.ihr360.com/*",
+        "*://*.lagou.com/*",
+        "*://*.liepin.com/*",
+        "*://*.liepin.cn/*",
+        "*://*.ganji.com/*",
+        "*://*.51job.com/*",
+        "*://*.ganji.com/*",
+        "*://*.zhaopin.com/*",
+        "*://*.zhipin.com/*",
+        "*://*.58.com/*"
+      ],
+      "js": ["js/content-script/content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    "js/content-script/inject.js",
+    "js/content-script/recruit.js",
+    "js/content-script/fillAccount.js"
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+I",
+        "mac": "MacCtrl+Shift+I"
+      },
+      "description": "打开i快招"
+    }
+  }
+}
