@@ -1,7 +1,5 @@
 import * as React from "react";
-// import IrsButton from "ihr360-web-ui/packages/action/irs-button";
 import Button from "antd/es/button";
-// import { Button } from "antd";
 import baseConfig from "../../util/config";
 
 const bg = chrome.extension.getBackgroundPage() as any;

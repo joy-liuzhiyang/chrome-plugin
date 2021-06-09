@@ -7,7 +7,7 @@
     psd: string;
     accountName?: string;
   },
-  channelAccountId: string,
+  channelAccountId: string
 ) => {
   window.postMessage(
     {
@@ -17,7 +17,7 @@
         data,
         jobDescriptionId,
         accountInfo,
-        channelAccountId
+        channelAccountId,
       },
     },
     "/"

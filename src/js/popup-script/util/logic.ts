@@ -164,8 +164,11 @@ export const transformLabelToValue = (resumeInfo: any, baseInfo: any) => {
 
 /** parse value to label */
 export const transformValueToLabel = (value: any, baseInfo: any) => {
+  console.log("parse value to label", value);
   const obj = {
     ...value,
+    headcountId: value.position,
+    talentPoolIds: value.note,
     currentLocation: value.address,
     yearWorkExperience: value.workYear,
     name: value.username,
@@ -174,6 +177,8 @@ export const transformValueToLabel = (value: any, baseInfo: any) => {
   delete obj.address;
   delete obj.workYear;
   delete obj.username;
+  delete obj.position;
+  delete obj.note;
 
   if (obj["yearWorkExperience"]) {
     const item = (baseInfo.experiences || []).find(

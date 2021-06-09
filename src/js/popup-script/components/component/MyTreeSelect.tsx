@@ -94,6 +94,7 @@ const MyTreeSelect = React.memo((props: any) => {
       clearIcon={<CloseCircleFilled />}
       removeIcon={<CloseOutlined />}
       showSearch={true}
+      multiple={true}
       optionFilterProp="label"
       {...props}
       open={open}

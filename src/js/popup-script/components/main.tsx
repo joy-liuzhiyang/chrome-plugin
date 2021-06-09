@@ -1,4 +1,5 @@
 import * as React from "react";
+import Spin from "antd/es/spin";
 import UnLoginView from "./unLogin";
 import LoginView, { ErrorPage } from "./login";
 import {
@@ -33,6 +34,7 @@ class PopupView extends React.PureComponent<any, any> {
       hasResume: false,
       resumeInfo: null,
       analysising: false,
+      judging: true,
       baseInfo: null,
       checking: false,
       isRepeat: false,
@@ -65,7 +67,7 @@ class PopupView extends React.PureComponent<any, any> {
           // hasResume: true
         },
         () => {
-          console.log("登录状态的this.state.prefixUrl", this.state.prefixUrl)
+          console.log("登录状态的this.state.prefixUrl", this.state.prefixUrl);
           setTimeout(async () => {
             if (isLogin) {
               //再次验证登录状态
@@ -125,6 +127,7 @@ class PopupView extends React.PureComponent<any, any> {
                 hasResume: true,
                 analysising: true,
                 siteUrl: res.siteUrl,
+                judging: false,
               },
               () => {
                 requestParseResume(this.state.prefixUrl, res).then(
@@ -196,6 +199,7 @@ class PopupView extends React.PureComponent<any, any> {
         hasResume: false,
         checking: false,
         isRepeat: false,
+        judging: false,
       });
     }
   };
@@ -212,27 +216,34 @@ class PopupView extends React.PureComponent<any, any> {
       siteUrl,
       fileContent,
       errorInfo,
+      judging,
     } = this.state;
     return (
       <div className="popup-class-wrap">
-        {isLogin ? (
-          !hasResume ? (
-            <LoginView data={tabData} prefixUrl={prefixUrl} />
-          ) : errorInfo ? (
-            <ErrorPage errorInfo={errorInfo} />
+        <Spin
+          delay={0}
+          spinning={isLogin ? judging : false}
+          tip="正在检查当前页面..."
+        >
+          {isLogin ? (
+            !hasResume ? (
+              <LoginView data={tabData} prefixUrl={prefixUrl} />
+            ) : errorInfo ? (
+              <ErrorPage errorInfo={errorInfo} />
+            ) : (
+              <AnalysisView
+                baseInfo={baseInfo}
+                resumeInfo={resumeInfo}
+                prefixUrl={prefixUrl}
+                siteUrl={siteUrl}
+                analysising={analysising}
+                fileContent={fileContent}
+              />
+            )
           ) : (
-            <AnalysisView
-              baseInfo={baseInfo}
-              resumeInfo={resumeInfo}
-              prefixUrl={prefixUrl}
-              siteUrl={siteUrl}
-              analysising={analysising}
-              fileContent={fileContent}
-            />
-          )
-        ) : (
-          <UnLoginView />
-        )}
+            <UnLoginView />
+          )}
+        </Spin>
       </div>
     );
   }

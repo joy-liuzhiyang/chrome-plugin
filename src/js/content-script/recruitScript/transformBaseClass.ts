@@ -51,9 +51,14 @@ export default class transformBaseClass {
   submitTimer: any;
   type: string;
   id: string;
-  channelAccountId: string
+  channelAccountId: string;
 
-  constructor(data: any, baseDataObj: any, id: string, channelAccountId: string) {
+  constructor(
+    data: any,
+    baseDataObj: any,
+    id: string,
+    channelAccountId: string
+  ) {
     this.baseDataObj = baseDataObj;
     this.channelAccountId = channelAccountId;
     this.result = {
@@ -67,7 +72,7 @@ export default class transformBaseClass {
     this.delay = 3000;
     this.submitTimer = null;
 
-    this.submitBtn = `document.querySelector(".frame-box iframe").contentDocument.querySelector('button[type="submit"]')`//--------
+    this.submitBtn = `document.querySelector(".frame-box iframe").contentDocument.querySelector('button[type="submit"]')`; //--------
 
     if (data.workExperience) {
       this.result["workExperience"] = this.transform_workExperience(

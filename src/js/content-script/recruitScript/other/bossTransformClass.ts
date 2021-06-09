@@ -214,11 +214,6 @@ class BossTransformClass extends transformBaseClass {
     if (submitBtnDom) {
       submitBtnDom.addEventListener("click", () => {
         clearTimeout(this.submitTimer);
-
-        // window.postMessage({
-        //     source: 'i-recruit-boss-submit-script',
-        // }, '/');
-
         this.submitTimer = setTimeout(() => {
           clearTimeout(this.submitTimer);
           this.intervalStatus();
@@ -239,7 +234,6 @@ class BossTransformClass extends transformBaseClass {
     myWindow.submitBossIntervalTimer = setInterval(() => {
       myWindow.intervalEnd = new Date().getTime();
       if (window.location.href === "https://www.zhipin.com/web/boss/job/list") {
-        // this.publishSuccess(currentJobName)
         window.postMessage(
           {
             source: "i-recruit-boss-submit-script",
@@ -255,7 +249,6 @@ class BossTransformClass extends transformBaseClass {
           myWindow.submitBossIntervalTimer
         );
       } else if (document.body.innerText.includes("发布成功")) {
-        // this.publishSuccess(currentJobName)
         // 针对弹窗
         window.postMessage(
           {

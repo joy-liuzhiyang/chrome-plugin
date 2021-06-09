@@ -40,7 +40,7 @@ export default class publicResultClass {
   //智联需要获取渠道class里的额外信息
   getOtherPublicInfo = async (publicPageItem: any, url: string) => {
     return new Promise((resolve: any) => {
-      if ( publicPageItem.type === "zhilian" ) {
+      if (publicPageItem.type === "zhilian") {
         chrome.storage.local.get(null, (res: any) => {
           if (res) {
             resolve(res.name);
@@ -55,19 +55,22 @@ export default class publicResultClass {
   };
 
   publicSucess = (value: any) => {
-    console.log("获取到了发布成功状态", value)
-    chrome.runtime.sendMessage({
-      from: 'content',
-      to: 'background',
-      type: 'publcResult',
-      data: {
-        channelAccountId: value.channelAccountId,
-        channelCode: value.channelCode,
-        jobDescriptionId: value.jobDescriptionId
+    console.log("get publish success status", value);
+    chrome.runtime.sendMessage(
+      {
+        from: "content",
+        to: "background",
+        type: "publcResult",
+        data: {
+          channelAccountId: value.channelAccountId,
+          channelCode: value.channelCode,
+          jobDescriptionId: value.jobDescriptionId,
+        },
+      },
+      (response: any) => {
+        console.log("response：", response);
       }
-    }, (response: any) => {
-      console.log("response：",response)
-    })
+    );
   };
 
   /** 更新发布结果 */
@@ -77,14 +80,13 @@ export default class publicResultClass {
       const reg = new RegExp(item.reg);
       return reg.test(url);
     });
-    console.log("publicPageItem", publicPageItem)
     if (publicPageItem) {
       const publicId = await this.getOtherPublicInfo(publicPageItem, url);
-      console.log("publicId", publicId)
+      console.log("publicId", publicId);
       if (publicPageItem && publicId) {
         chrome.storage.local.get(null, (res: any) => {
-          console.log("get成功", res)
-          if (res && res.field) { 
+          console.log("get success", res);
+          if (res && res.field) {
             if (res.time) {
               this.publicSucess(res);
             }

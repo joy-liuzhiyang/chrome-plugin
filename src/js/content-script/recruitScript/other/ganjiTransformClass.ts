@@ -1,9 +1,13 @@
 import transformBaseClass from "../transformBaseClass";
 
 class GanjiTransformClass extends transformBaseClass {
-  constructor(data: any, baseDataObj: any, id: string, channelAccountId: string) {
+  constructor(
+    data: any,
+    baseDataObj: any,
+    id: string,
+    channelAccountId: string
+  ) {
     super(data, baseDataObj, id, channelAccountId);
-    // this.domString = '#id_description';
     this.delay = 2000;
 
     this.submitBtn = `document.querySelector('#pub-post')`;
@@ -126,26 +130,20 @@ class GanjiTransformClass extends transformBaseClass {
     }
   };
 
-  // intervalStatus = () => {
-  //   chrome.storage.local.set({
-  //     ganjiPublishInfo: {
-  //       time: new Date().getTime(),
-  //       id: this.id,
-  //     },
-  //   });
-  // };
-
   intervalStatus = () => {
-    // alert("渠道为赶集liepinClass" )
-    window.postMessage({
-      source: 'i-submit-recruit-content',
-      data: {
-        channelAccountId: this.channelAccountId,
-        channelCode: "ganjiwang",
-        jobDescriptionId: this.id,
-        field: 'ganjiPublishInfo'
-      }
-    }, '/')
+    // alert("渠道为赶集Class" )
+    window.postMessage(
+      {
+        source: "i-submit-recruit-content",
+        data: {
+          channelAccountId: this.channelAccountId,
+          channelCode: "ganjiwang",
+          jobDescriptionId: this.id,
+          field: "ganjiPublishInfo",
+        },
+      },
+      "/"
+    );
   };
 }
 

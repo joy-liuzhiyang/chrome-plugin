@@ -16,7 +16,7 @@ class AutoFillAccount {
       {
         //https://ehire.51job.com/MainLogin.aspx
         reg: "^http(?:s)?://\\w+.51job\\.com.*",
-        dom: ".signUpBox",
+        dom: ".listLogin_form.listLogin_form_direct",
         type: "qiancheng",
       },
       {
@@ -26,9 +26,9 @@ class AutoFillAccount {
         type: "58",
       },
       {
-        // https://passport.ganji.com/login.php
-        reg: "^http(?:s)?://\\w+.ganji\\.com/login\\.php.*",
-        dom: ".loginWrap",
+        //http://www.ganji.com/pub/pub.php?act=pub&method=load&cid=2&domain=sh&from=uc&_pdt=zhaopin
+        reg: "^http(?:s)?://\\w+.ganji\\.com/pub/pub\\.php.*",
+        dom: ".noLogin-area",
         type: "ganji",
       },
       {
@@ -46,7 +46,7 @@ class AutoFillAccount {
       {
         // https://passport.zhaopin.com/org/login
         reg: "^http(?:s)?://\\w+.zhaopin\\.com/org/login.*",
-        dom: ".register-container",
+        dom: ".rd6-login-main.km-main",
         type: "zhilian",
       },
     ];
@@ -139,16 +139,14 @@ class AutoFillAccount {
       switch (type) {
         case "zhilian":
           {
-            $($("form input")[0])
-              .val(this.username)
-              .trigger("focus")
-              .trigger("blur");
+            $($("form input")[0]).val(this.username);
             $("form input")[0].dispatchEvent(this.createEvent("input"));
-            $($("form input")[1])
-              .val(this.psd)
-              .trigger("focus")
-              .trigger("blur");
+            $($("form input")[1]).val(this.psd);
             $("form input")[1].dispatchEvent(this.createEvent("input"));
+            setTimeout(()=>{
+              $($("form input")[0]).trigger("focus").trigger("blur");
+              $($("form input")[1]).trigger("focus").trigger("blur");
+            })
           }
           break;
         case "lagou":

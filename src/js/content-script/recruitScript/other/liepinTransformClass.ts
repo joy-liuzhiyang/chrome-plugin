@@ -1,12 +1,13 @@
 import transformBaseClass from "../transformBaseClass";
 
 class LiepinTransformClass extends transformBaseClass {
-  constructor(data: any, baseDataObj: any, id: string, channelAccountId: string) {
+  constructor(
+    data: any,
+    baseDataObj: any,
+    id: string,
+    channelAccountId: string
+  ) {
     super(data, baseDataObj, id, channelAccountId);
-    console.log("JD信息",data)//JD信息
-    console.log("工作经验和学历要求",baseDataObj)//该渠道的工作经验和学历要求下拉选择options
-    console.log("jobDescriptionId",id)//jobDescriptionId
-    console.log("channelAccountId",channelAccountId)//channelAccountId
     this.domString = '[data-selector="ejob-description-content"]';
     this.submitBtn = `document.querySelector('[data-selector=btn-publish-job]')`;
   }
@@ -112,15 +113,18 @@ class LiepinTransformClass extends transformBaseClass {
 
   intervalStatus = () => {
     // alert("渠道为猎聘liepinClass" )
-    window.postMessage({
-      source: 'i-submit-recruit-content',
-      data: {
-        channelAccountId: this.channelAccountId,
-        channelCode: "liepin",
-        jobDescriptionId: this.id,
-        field: 'liepinPublishInfo'
-      }
-    }, '/')
+    window.postMessage(
+      {
+        source: "i-submit-recruit-content",
+        data: {
+          channelAccountId: this.channelAccountId,
+          channelCode: "liepin",
+          jobDescriptionId: this.id,
+          field: "liepinPublishInfo",
+        },
+      },
+      "/"
+    );
   };
 }
 

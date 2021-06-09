@@ -1,7 +1,12 @@
 import transformBaseClass from "../transformBaseClass";
 
 class LagouTransformClass extends transformBaseClass {
-  constructor(data: any, baseDataObj: any, id: string, channelAccountId: string) {
+  constructor(
+    data: any,
+    baseDataObj: any,
+    id: string,
+    channelAccountId: string
+  ) {
     super(data, baseDataObj, id, channelAccountId);
     this.domString = "#positionDesc";
   }
@@ -127,26 +132,20 @@ class LagouTransformClass extends transformBaseClass {
     }
   };
 
-  // intervalStatus = () => {
-  //   chrome.storage.local.set({
-  //     lagouPublishInfo: {
-  //       time: new Date().getTime(),
-  //       id: this.id,
-  //     },
-  //   });
-  // };
-  
   intervalStatus = () => {
-    // alert("渠道为拉钩liepinClass" )
-    window.postMessage({
-      source: 'i-submit-recruit-content',
-      data: {
-        channelAccountId: this.channelAccountId,
-        channelCode: "lagouwang",
-        jobDescriptionId: this.id,
-        field: 'lagouPublishInfo'
-      }
-    }, '/')
+    // alert("渠道为勾Class" )
+    window.postMessage(
+      {
+        source: "i-submit-recruit-content",
+        data: {
+          channelAccountId: this.channelAccountId,
+          channelCode: "lagouwang",
+          jobDescriptionId: this.id,
+          field: "lagouPublishInfo",
+        },
+      },
+      "/"
+    );
   };
 }
 

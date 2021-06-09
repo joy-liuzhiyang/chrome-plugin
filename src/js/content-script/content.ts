@@ -135,7 +135,7 @@ function dealRecruit() {
         },
         (data) => {
           if (data) {
-            console.log("data#####%%%%%%", data)
+            console.log("data#####%%%%%%", data);
             window.postMessage(
               {
                 source: "i-recruit-content",
@@ -156,7 +156,7 @@ function dealRecruit() {
         e.data.source === "i-recruit-boss-submit-script" &&
         e.origin === location.origin
       ) {
-        console.log("获取boss的信息为：", e.data)
+        console.log("获取boss的信息为：", e.data);
         chrome.runtime.sendMessage(
           {
             form: "content",
@@ -165,7 +165,7 @@ function dealRecruit() {
             data: {
               channelAccountId: e.data.data.channelAccountId,
               channelCode: "bosszhipin",
-              jobDescriptionId: e.data.data.jobDescriptionId
+              jobDescriptionId: e.data.data.jobDescriptionId,
             },
           },
           (e) => {}
@@ -235,18 +235,21 @@ window.onload = () => {
 };
 
 window.addEventListener("message", function (e) {
-  if(e.data.source === "i-submit-recruit-content" && e.origin === location.origin){
-    console.log("渠道传过来的data", e.data.data)
+  if (
+    e.data.source === "i-submit-recruit-content" &&
+    e.origin === location.origin
+  ) {
+    console.log("渠道传过来的data", e.data.data);
     const channelPublishInfo = {
       time: new Date().getTime(),
       channelAccountId: e.data.data.channelAccountId,
       channelCode: e.data.data.channelCode,
       jobDescriptionId: e.data.data.jobDescriptionId,
       field: e.data.data.field,
-      name: e.data.data.name
-    }
+      name: e.data.data.name,
+    };
     chrome.storage.local.set(channelPublishInfo, () => {
-      console.log("set成功")
+      console.log("set成功");
     });
   }
-})
+});

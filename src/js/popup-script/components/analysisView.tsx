@@ -17,6 +17,7 @@ import {
 
 const FormItem = Form.Item;
 
+//电话号码input
 function MobileNoView(props: any) {
   const option = [
     {
@@ -45,8 +46,9 @@ function MobileNoView(props: any) {
   );
 }
 
+//解析简历表单下拉菜单内容
 const AnalysisFormView = React.memo((props: any) => {
-  console.log("AnalysisFormView ----- ", props);
+  console.log("baseInfoOption AnalysisFormView ----- ", props);
 
   const ref = React.useRef();
 
@@ -131,6 +133,7 @@ const ForwordAnalysisFormView = React.forwardRef((props: any, ref: any) => {
   return <AnalysisFormView {...props} forwardRef={ref} />;
 });
 
+//头部查重状态区
 function getAlertProps(
   status: "checking" | "repeat" | "noRepeat" | "saveFail" | "saveSuccess",
   url?: any
@@ -207,10 +210,9 @@ const AnalysisFormViewWrap = React.forwardRef((props: any, ref: any) => {
       ...transformValueToLabel(value, baseInfo),
       fileContent,
     };
-
     requestResumeUpload(prefixUrl, obj).then((res: any) => {
       setSubmitLoading(false);
-      console.log("res ----- ", res);
+      console.log("requestResumeUpload——res ----", res);
       if (res.status === 200 && res.res.code === 0) {
         setStatus("saveSuccess");
       } else {
@@ -248,7 +250,7 @@ const AnalysisView = React.memo((props: any) => {
 
   React.useEffect(() => {
     if (!analysising && resumeInfo) {
-      console.log("检测简历是否重复 ----", props, resumeInfo);
+      console.log("duplication：?", props, resumeInfo);
       requestResumeRepeat(prefixUrl, { ...resumeInfo, siteUrl }).then(
         (res: any) => {
           if (res.status === 200 && res.res && res.res.code === 0) {

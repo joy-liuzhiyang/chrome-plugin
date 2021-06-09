@@ -1,7 +1,12 @@
 import transformBaseClass from "../transformBaseClass";
 
 class QianChengTransformClass extends transformBaseClass {
-  constructor(data: any, baseDataObj: any, id: string, channelAccountId: string) {
+  constructor(
+    data: any,
+    baseDataObj: any,
+    id: string,
+    channelAccountId: string
+  ) {
     super(data, baseDataObj, id, channelAccountId);
 
     this.result = {
@@ -106,7 +111,9 @@ class QianChengTransformClass extends transformBaseClass {
         if (iframe) {
           iframe.contentDocument.body.innerHTML =
             "<div>" +
-            this.result.positionDescription.replace(/\n*$/g, "").replace(/\n/g,"</div><div>") +
+            this.result.positionDescription
+              .replace(/\n*$/g, "")
+              .replace(/\n/g, "</div><div>") +
             "</div>";
         }
       }
@@ -136,15 +143,18 @@ class QianChengTransformClass extends transformBaseClass {
 
   intervalStatus = () => {
     // alert("渠道为前程无忧Class" )
-    window.postMessage({
-      source: 'i-submit-recruit-content',
-      data: {
-        channelAccountId: this.channelAccountId,
-        channelCode: "51job",
-        jobDescriptionId: this.id,
-        field: 'qianchengPublishInfo',
-      }
-    }, '/')
+    window.postMessage(
+      {
+        source: "i-submit-recruit-content",
+        data: {
+          channelAccountId: this.channelAccountId,
+          channelCode: "51job",
+          jobDescriptionId: this.id,
+          field: "qianchengPublishInfo",
+        },
+      },
+      "/"
+    );
   };
 }
 

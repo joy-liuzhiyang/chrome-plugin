@@ -15,7 +15,7 @@ function NotResumePage() {
         当前页面没有需要发布的职位/求职者简历
       </div>
       <div className="support-text-wrap">
-        支持拉钩、猎聘、智联、前程无忧、BOSS直聘、58同城、赶集网
+        支持拉勾、猎聘、智联、前程无忧、BOSS直聘、58同城、赶集网
       </div>
     </React.Fragment>
   );

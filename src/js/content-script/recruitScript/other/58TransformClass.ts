@@ -1,7 +1,12 @@
 import transformBaseClass from "../transformBaseClass";
 
 class FiveTransformClass extends transformBaseClass {
-  constructor(data: any, baseDataObj: any, id: string, channelAccountId: string) {
+  constructor(
+    data: any,
+    baseDataObj: any,
+    id: string,
+    channelAccountId: string
+  ) {
     super(data, baseDataObj, id, channelAccountId);
 
     this.id = id;
@@ -144,26 +149,20 @@ class FiveTransformClass extends transformBaseClass {
     }
   };
 
-  // intervalStatus = () => {
-  //   chrome.storage.local.set({
-  //     "58PublishInfo": {
-  //       time: new Date().getTime(),
-  //       id: this.id,
-  //     },
-  //   });
-  // };
-
   intervalStatus = () => {
-    // alert("渠道为58同城liepinClass" )
-    window.postMessage({
-      source: 'i-submit-recruit-content',
-      data: {
-        channelAccountId: this.channelAccountId,
-        channelCode: "58tongcheng",
-        jobDescriptionId: this.id,
-        field: '58PublishInfo'
-      }
-    }, '/')
+    // alert("渠道为58同城Class" )
+    window.postMessage(
+      {
+        source: "i-submit-recruit-content",
+        data: {
+          channelAccountId: this.channelAccountId,
+          channelCode: "58tongcheng",
+          jobDescriptionId: this.id,
+          field: "58PublishInfo",
+        },
+      },
+      "/"
+    );
   };
 }
 

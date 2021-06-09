@@ -65,38 +65,4 @@ window.addEventListener("message", function (e) {
     console.log("############## ", e.data.data);
     fillRecruiInfo(e.data.data.data.type, e.data.data.data, e.data.data.data.jobDescriptionId, e.data.data.data.channelAccountId);
   }
-
 });
-
-// let type = null;
-
-// if (location.href.includes('easy.lagou.com')) {
-//     type = 'lagou';
-// } else if (location.href.includes('zhaopin.com')) {
-//     type = 'zhilian';
-// } else if (location.href.includes('51job.com')) {
-//     type = 'qiancheng';
-// } else if (location.href.includes('liepin.com')) {
-//     type = 'liepin';
-// } else if (location.href.includes('ganji.com')) {
-//     type = 'ganji';
-// } else if (location.href.includes('58.com')) {
-//     type = '58';
-// } else if (location.href.includes('zhipin.com')) {
-//     type = 'boss';
-// }
-
-// console.log("fillRecruiInfo ++++++++++ ", type);
-
-// fillRecruiInfo(type, {
-//     positionName: '前端',
-//     positionDescription: '职位描述 hahaha',
-//     salaryMin: 3500,
-//     salaryMax: 6000,
-//     salaryMonth: 14,
-//     salaryUnit: 0,
-//     department: '开发部',
-//     workExperience: [2, 5],
-//     education: [50, 50],
-//     positionTotal: 10
-// })
